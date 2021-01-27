@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".NewsActivity">
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            tools:text="Very Long Title For Test Long Title Multi Line" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            android:layout_marginBottom="4dp"
+            android:textSize="14sp"
+            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent non magna aliquet, porttitor dolor sed, rhoncus risus. Ut consectetur ligula eget interdum consectetur. Donec maximus volutpat ex, eu auctor nibh pretium id. Nam non egestas quam. Vestibulum posuere, sapien a euismod ultricies, elit neque tincidunt mi, aliquam tempor tellus sapien ut nisi. Donec nec convallis justo. Praesent tellus enim, tempor eu metus et, efficitur hendrerit tortor. Ut convallis aliquet erat, feugiat tincidunt eros volutpat eget. Donec ornare erat ac nulla aliquet, fermentum vehicula est convallis. Quisque nulla est, tincidunt eget risus congue, finibus accumsan est. Pellentesque condimentum, sem sit amet posuere sodales, urna lorem lacinia mi, sed eleifend odio ligula ac diam. Aenean ultrices felis leo, ut fermentum dolor varius vestibulum. Suspendisse potenti. Quisque ut bibendum metus. Nunc ligula lectus, accumsan a imperdiet quis, finibus vel est. Nam mattis diam eros, vel fringilla dolor euismod ut." />
+
+    </LinearLayout>
+</ScrollView>
