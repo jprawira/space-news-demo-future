@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.spacenewsdemo.databinding.ItemNewsListBinding
 
-class NewsAdapter(private val i: Interface, private var data: List<News>) :
+class NewsAdapter(private val interface_: Interface, private var data: List<News>) :
     RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -28,7 +28,7 @@ class NewsAdapter(private val i: Interface, private var data: List<News>) :
                 textView2.text = item.summary
                 root.setOnClickListener {
                     if (item.id != null) {
-                        i.c(item.id)
+                        interface_.click(item.id)
                     }
                 }
             }
@@ -36,7 +36,7 @@ class NewsAdapter(private val i: Interface, private var data: List<News>) :
     }
 
     interface Interface {
-        fun c(id: String)
+        fun click(id: String)
     }
 
 }
