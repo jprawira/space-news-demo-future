@@ -20,7 +20,7 @@ class NewsActivity : AppCompatActivity() {
         setContentView(binding.root)
         var id = intent.getStringExtra("ID")
         if (id != null) {
-            getNews(id).subscribeOn(Schedulers.newThread())
+            NewsApiService.getNews(id).subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe({
                     Glide.with(applicationContext).load(it.imageUrl).into(binding.imageViewNews)
                     binding.textViewTitle.text = it.title
@@ -29,8 +29,4 @@ class NewsActivity : AppCompatActivity() {
         }
     }
 
-    fun getNews(id: String): Single<News> {
-        // use build config
-        return MainActivity.retrofit.getNewsDetail(BuildConfig.API_KEY, id)
-    }
 }

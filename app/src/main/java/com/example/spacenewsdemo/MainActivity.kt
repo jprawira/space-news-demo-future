@@ -17,20 +17,11 @@ class MainActivity : AppCompatActivity(), NewsAdapter.INewsAdapter{
   private lateinit var binding: ActivityMainBinding
   private var newsAdapter: NewsAdapter? = null
 
-  companion object {
-    // Move API key
-    val retrofit = Retrofit.Builder()
-      .baseUrl("https://test.spaceflightnewsapi.net/api/v2/")
-      .addConverterFactory(GsonConverterFactory.create())
-      .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-      .build().create(NewsApi::class.java)
-  }
-
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     binding = ActivityMainBinding.inflate(layoutInflater)
     setContentView(binding.root)
-    getAllNews().subscribeOn(Schedulers.newThread())
+    NewsApiService.getAllNews().subscribeOn(Schedulers.newThread())
       .observeOn(AndroidSchedulers.mainThread()).subscribe({
         newsAdapter = NewsAdapter(this@MainActivity, it)
         binding.recyclerView1.adapter = newsAdapter
@@ -44,8 +35,4 @@ class MainActivity : AppCompatActivity(), NewsAdapter.INewsAdapter{
     startActivity(intent)
   }
 
-  fun getAllNews(): Single<List<News>> {
-    // use build config
-    return retrofit.getNews(BuildConfig.API_KEY)
-  }
 }
