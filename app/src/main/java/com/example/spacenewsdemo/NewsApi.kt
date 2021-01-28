@@ -13,6 +13,10 @@ interface NewsApi {
         @Query("_limit") itemLimit: Int = 50
     ): Single<List<News>>
 
+    // move down argument
     @GET("articles/{id}")
-    fun getNewsDetail(@Header("apiKey") apiKey: String, @Path("id") id: String): Single<News>
+    fun getNewsDetail(
+        @Header("apiKey") apiKey: String,
+        @Path("id") id: String
+    ): Single<News>
 }

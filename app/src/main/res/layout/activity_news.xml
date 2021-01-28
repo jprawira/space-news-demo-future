@@ -12,12 +12,12 @@
         tools:context=".NewsActivity">
 
         <ImageView
-            android:id="@+id/imageView1"
+            android:id="@+id/imageViewNews"
             android:layout_width="match_parent"
             android:layout_height="100dp" />
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/textViewTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
@@ -26,7 +26,7 @@
             tools:text="Very Long Title For Test Long Title Multi Line" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textViewSummary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="4dp"

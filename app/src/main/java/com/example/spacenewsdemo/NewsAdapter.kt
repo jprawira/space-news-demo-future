@@ -1,17 +1,20 @@
 package com.example.spacenewsdemo
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.spacenewsdemo.databinding.ItemNewsListBinding
 
-class NewsAdapter(private val i: Interface, private var data: List<News>) :
+class NewsAdapter(private val interfaceNewsAdapter: INewsAdapter, private var data: List<News>) :
     RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
-
+    private lateinit var binding : ItemNewsListBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
-            ItemNewsListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        )
+        // change element passed to ViewHolder
+        val inflater = LayoutInflater.from(parent.context)
+        binding = ItemNewsListBinding.inflate(inflater, parent, false)
+
+        return ViewHolder(binding.root)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -20,23 +23,25 @@ class NewsAdapter(private val i: Interface, private var data: List<News>) :
 
     override fun getItemCount(): Int = data.size
 
-    inner class ViewHolder(private val binding: ItemNewsListBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         fun bind(item: News) {
             with(binding) {
                 // TODO: INSERT IMAGE
-                textView1.text = item.title
-                textView2.text = item.summary
+                textViewTitle.text = item.title
+                textViewSummary.text = item.summary
                 root.setOnClickListener {
                     if (item.id != null) {
-                        i.c(item.id)
+                        interfaceNewsAdapter.clickListener(item.id)
                     }
                 }
             }
         }
     }
 
-    interface Interface {
-        fun c(id: String)
+    // change interface name
+    interface INewsAdapter {
+        // change method name
+        fun clickListener(id: String)
     }
 
 }
