@@ -3,7 +3,6 @@ package com.example.spacenewsdemo
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.example.spacenewsdemo.databinding.ActivityMainBinding
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
@@ -12,12 +11,14 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-class MainActivity : AppCompatActivity(), NewsAdapter.Interface {
-  private lateinit var b: ActivityMainBinding
-  private var a: NewsAdapter? = null
+class MainActivity : AppCompatActivity(), NewsAdapter.INewsAdapter{
+
+  // change variable name
+  private lateinit var binding: ActivityMainBinding
+  private var newsAdapter: NewsAdapter? = null
 
   companion object {
-    const val API_KEY = "3tscd3r2fVYrfCwwftMZlaCdUScZqvSl"
+    // Move API key
     val retrofit = Retrofit.Builder()
       .baseUrl("https://test.spaceflightnewsapi.net/api/v2/")
       .addConverterFactory(GsonConverterFactory.create())
@@ -27,22 +28,24 @@ class MainActivity : AppCompatActivity(), NewsAdapter.Interface {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    b = ActivityMainBinding.inflate(layoutInflater)
-    setContentView(b.root)
+    binding = ActivityMainBinding.inflate(layoutInflater)
+    setContentView(binding.root)
     getAllNews().subscribeOn(Schedulers.newThread())
       .observeOn(AndroidSchedulers.mainThread()).subscribe({
-        a = NewsAdapter(this@MainActivity, it)
-        b.recyclerView1.adapter = a
+        newsAdapter = NewsAdapter(this@MainActivity, it)
+        binding.recyclerView1.adapter = newsAdapter
       }, {})
   }
 
-  override fun c(id: String) {
-    var i = Intent(applicationContext, NewsActivity::class.java)
-    i.putExtra("ID", id)
-    startActivity(i)
+  override fun clickListener(id: String) {
+    // change intent name variable and context
+    var intent = Intent(this, NewsActivity::class.java)
+    intent.putExtra("ID", id)
+    startActivity(intent)
   }
 
   fun getAllNews(): Single<List<News>> {
-    return retrofit.getNews(API_KEY)
+    // use build config
+    return retrofit.getNews(BuildConfig.API_KEY)
   }
 }
