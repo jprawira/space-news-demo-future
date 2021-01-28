@@ -1,5 +1,6 @@
-package com.example.spacenewsdemo
+package com.example.spacenewsdemo.repo
 
+import com.example.spacenewsdemo.model.News
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Header

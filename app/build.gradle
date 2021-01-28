@@ -3,6 +3,10 @@ plugins {
     id 'kotlin-android'
 }
 
+// Define Variable API Key
+def STRING = 'String'
+def API_KEY = '"' + api_secret + '"' ?: '"Define your API Key!"'
+
 android {
     compileSdkVersion 30
 
@@ -14,6 +18,9 @@ android {
         versionName "0.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        each { type ->
+            type.buildConfigField STRING, 'api_secret', API_KEY
+        }
     }
 
     buildTypes {
@@ -48,6 +55,7 @@ dependencies {
     implementation "io.reactivex.rxjava3:rxjava:3.0.9"
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

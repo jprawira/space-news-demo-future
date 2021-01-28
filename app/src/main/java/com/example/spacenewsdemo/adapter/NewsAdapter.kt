@@ -1,11 +1,12 @@
-package com.example.spacenewsdemo
+package com.example.spacenewsdemo.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.spacenewsdemo.databinding.ItemNewsListBinding
+import com.example.spacenewsdemo.model.News
 
-class NewsAdapter(private val i: Interface, private var data: List<News>) :
+class NewsAdapter(private val iNewsAdapter: INewsAdapter, private var data: List<News>) :
     RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -28,15 +29,15 @@ class NewsAdapter(private val i: Interface, private var data: List<News>) :
                 textView2.text = item.summary
                 root.setOnClickListener {
                     if (item.id != null) {
-                        i.c(item.id)
+                        iNewsAdapter.redirectToNewsActivity(item.id)
                     }
                 }
             }
         }
     }
 
-    interface Interface {
-        fun c(id: String)
+    interface INewsAdapter {
+        fun redirectToNewsActivity(id: String)
     }
 
 }
