@@ -28,7 +28,7 @@ class NewsAdapter(private val i: Interface, private var data: List<News>) :
                 textViewDetail.text = item.summary
                 root.setOnClickListener {
                     if (item.id != null) {
-                        i.getNewsDetail(item.id)
+                        i.openNewsDetail(item.id)
                     }
                 }
             }
@@ -37,7 +37,7 @@ class NewsAdapter(private val i: Interface, private var data: List<News>) :
 
     interface Interface {
         // Better use meaningful name for method
-        fun getNewsDetail(id: String)
+        fun openNewsDetail(id: String)
     }
 
 }

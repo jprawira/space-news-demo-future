@@ -20,4 +20,8 @@ object Network {
     fun getAllNews(): Single<List<News>> {
         return retrofit.getNews(API_KEY)
     }
+
+    fun getNewsDetail(id: String): Single<News> {
+        return retrofit.getNewsDetail(BuildConfig.API_KEY, id)
+    }
 }

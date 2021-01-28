@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity(), NewsAdapter.Interface {
     }
 
     // Better use meaningful name for method
-    override fun getNewsDetail(id: String) {
+    override fun openNewsDetail(id: String) {
         //Better use meaningful name for variable
         var intent = Intent(applicationContext, NewsActivity::class.java)
         intent.putExtra("ID", id)

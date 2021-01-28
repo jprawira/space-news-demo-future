@@ -4,10 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.spacenewsdemo.databinding.ActivityNewsBinding
-import com.example.spacenewsdemo.network.Network
-import com.example.spacenewsdemo.util.News
+import com.example.spacenewsdemo.network.Network.getNewsDetail
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class NewsActivity : AppCompatActivity() {
@@ -21,7 +19,7 @@ class NewsActivity : AppCompatActivity() {
         var id = intent.getStringExtra("ID")
         if (id != null) {
             // Changing schedulers to background
-            getNews(id).subscribeOn(Schedulers.io())
+            getNewsDetail(id).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe({
                     Glide.with(applicationContext).load(it.imageUrl).into(binding.imageView1)
                     binding.textViewTitle.text = it.title
@@ -30,7 +28,7 @@ class NewsActivity : AppCompatActivity() {
         }
     }
 
-    fun getNews(id: String): Single<News> {
-        return Network.retrofit.getNewsDetail(Network.API_KEY, id)
-    }
+//    fun getNews(id: String): Single<News> {
+//        return getNewsDetail(id)
+//    }
 }
