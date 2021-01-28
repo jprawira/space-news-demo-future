@@ -18,6 +18,11 @@ class Repository {
     }
 
     fun getAllNews(): Single<List<News>> {
+        //
         return retrofit.getNews(API_KEY)
+    }
+
+    fun getNews(id: String): Single<News> {
+        return retrofit.getNewsDetail(API_KEY, id)
     }
 }

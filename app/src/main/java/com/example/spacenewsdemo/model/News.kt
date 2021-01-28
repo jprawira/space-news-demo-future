@@ -1,8 +1,11 @@
 package com.example.spacenewsdemo.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 import java.io.Serializable
 
+@Parcelize
 data class News(
 	@SerializedName("id") val id: String? = null,
 	@SerializedName("title") val title: String? = null,
@@ -15,4 +18,4 @@ data class News(
 	@SerializedName("featured") val featured: Boolean? = null,
 	@SerializedName("launches") val launches: List<ProviderMessage>? = null,
 	@SerializedName("events") val events: List<ProviderMessage>? = null
-): Serializable
+): Parcelable
