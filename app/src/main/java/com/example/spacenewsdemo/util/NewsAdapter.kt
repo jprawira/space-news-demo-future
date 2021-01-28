@@ -1,4 +1,4 @@
-package com.example.spacenewsdemo
+package com.example.spacenewsdemo.util
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -24,11 +24,11 @@ class NewsAdapter(private val i: Interface, private var data: List<News>) :
         fun bind(item: News) {
             with(binding) {
                 // TODO: INSERT IMAGE
-                textView1.text = item.title
-                textView2.text = item.summary
+                textViewTitle.text = item.title
+                textViewDetail.text = item.summary
                 root.setOnClickListener {
                     if (item.id != null) {
-                        i.c(item.id)
+                        i.getNewsDetail(item.id)
                     }
                 }
             }
@@ -36,7 +36,8 @@ class NewsAdapter(private val i: Interface, private var data: List<News>) :
     }
 
     interface Interface {
-        fun c(id: String)
+        // Better use meaningful name for method
+        fun getNewsDetail(id: String)
     }
 
 }
